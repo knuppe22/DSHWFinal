@@ -24,8 +24,10 @@ public class HWFinal {
             else {
                 if (n > 0)
                     t.rbInsert(n);
-                else
-                    t.rbDelete(-1 * n);
+                else {
+                    if (!t.isWrongDeletion(Math.abs(n)))
+                        t.rbDelete(-1 * n);
+                }
             }
         }
         while (true) {
@@ -356,5 +358,8 @@ class RBTree {
                 str += (" " + tmp.val);
             return str;
         }
+    }
+    public boolean isWrongDeletion(int n) {
+        return treeSearch(root, n) == nil;
     }
 }
